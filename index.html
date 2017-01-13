@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app='store'>
+  <head>
+    <meta charset="utf-8">
+    <title>Angular Sandbox</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="container" ng-controller="StoreController">
+
+      <ul class="list-group">
+       <li class="list-group-item" ng-repeat="product in products" ng-init="productIndex = $index">
+
+         <h1>{{ product.name | uppercase }}</h1>
+         <h2 class="pull-right">{{ product.price | currency }}</h2>
+         <img ng-src="{{ product.images[0].full }}" width="200" height="150" alt="" />
+
+        <!-- ng-init displays the default tab you want o show -->
+                                     <!-- PanelController ready to control! -->
+         <section ng-init="tab = 1" ng-controller="PanelController as panel">
+
+           <ul class="nav nav-pills">
+             <!-- using ng-class to highlight which tab is active/select - highlighted in blue color -->
+             <li ng-class="{active:tab === 1}">
+               <!-- tab navigation with ng-click-->
+               <a href ng-click="panel.selectTab(1)">Description</a> </li>
+             <li ng-class="{active:tab === 2}">
+               <a href ng-click="panel.selectTab(2)">Specifcations</a> </li>
+             <li ng-class="{active:tab === 3}">
+               <a href ng-click="panel.selectTab(3)">Reviews</a> </li>
+           </ul>
+           <!--This displays the tab being clicked without having to declare it  -->
+            <!-- {{tab}} -->
+
+            <!-- Tab panels = tab content  -->
+            <div class="panel" ng-show="panel.isSelected(1)">
+              <h4>Description</h4>
+              <p>{{product.description}}</p>
+            </div>
+            <div class="panel" ng-show="panel.isSelected(2)">
+              <h4>Specs</h4>
+              <p>{{product.specs}}</p>
+            </div>
+            <div class="panel" ng-show="panel.isSelected(3)">
+              <h4>Reviews</h4>
+              <p>{{product.reviews}}</p>
+            </div>
+
+         </section>
+
+       </li>
+    </ul>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="/node_modules/angular/angular.js"></script>
+  <script src="/app.js" type="text/javascript"></script>
+  </body>
+</html>

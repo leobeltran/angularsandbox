@@ -1,0 +1,14 @@
+{
+  "name": "angularsand",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "start": "browser-sync start --server --port 7000 --files ./*"
+  },
+  "author": "LeoBeltran",
+  "license": "ISC",
+  "dependencies": {
+    "browser-sync": "^2.18.6"
+  }
+}
